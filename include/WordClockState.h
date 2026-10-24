@@ -36,30 +36,30 @@
     X(Ger10x11Clock, 15, _de10x11Clock, "de-10-11-clock")                      \
     X(Ger10x11Mrrioes, 16, _de10x11Mrrioes, "de-10-11-mrrioes")                \
     X(Ger10x11Nero, 17, _de10x11Nero, "de-10-11-nero")                         \
-    X(Ger10x11schwaebisch, 18, _de10x11schwaebisch, "de-10-11-schwaebisch")    \
-    X(Ger11x11, 19, _de11x11, "de-11-11")                                      \
-    X(Ger11x11schwaebisch, 20, _de11x11schwaebisch, "de-11-11-schwaebisch")    \
-    X(Ger11x11V2, 21, _de11x11V2, "de-11-11-v2")                               \
-    X(Ger11x11V3, 22, _de11x11V3, "de-11-11-v3")                               \
-    X(Ger13x13, 23, _de13x13, "de-13-13")                                      \
-    X(Ger16x8, 24, _de16x8, "de-16-8")                                         \
-    X(Ger16x18, 25, _de16x18, "de-16-18")                                      \
-    X(Ger22x11Weather, 26, _de22x11Weather, "de-22-11-weather")                \
+    X(Ger10x11NeroFrame, 18, _de10x11NeroFrame, "de-10-11-nero-frame")         \
+    X(Ger10x11schwaebisch, 19, _de10x11schwaebisch, "de-10-11-schwaebisch")    \
+    X(Ger11x11, 20, _de11x11, "de-11-11")                                      \
+    X(Ger11x11schwaebisch, 21, _de11x11schwaebisch, "de-11-11-schwaebisch")    \
+    X(Ger11x11V2, 22, _de11x11V2, "de-11-11-v2")                               \
+    X(Ger11x11V3, 23, _de11x11V3, "de-11-11-v3")                               \
+    X(Ger13x13, 24, _de13x13, "de-13-13")                                      \
+    X(Ger16x8, 25, _de16x8, "de-16-8")                                         \
+    X(Ger16x18, 26, _de16x18, "de-16-18")                                      \
+    X(Ger22x11Weather, 27, _de22x11Weather, "de-22-11-weather")                \
     /* HU (Hungarian) */                                                       \
-    X(Hu10x10, 27, _hu10x10, "hu-10-10")                                       \
+    X(Hu10x10, 28, _hu10x10, "hu-10-10")                                       \
     /* IT (Italian) */                                                         \
-    X(It10x11, 28, _it10x11, "it-10-11")                                       \
+    X(It10x11, 29, _it10x11, "it-10-11")                                       \
     /* NL (Dutch) */                                                           \
-    X(Nl10x11, 29, _nl10x11, "nl-10-11")                                       \
+    X(Nl10x11, 30, _nl10x11, "nl-10-11")                                       \
     /* RO (Romanian) */                                                        \
-    X(Ro10x11, 30, _ro10x11, "ro-10-11")                                       \
+    X(Ro10x11, 31, _ro10x11, "ro-10-11")                                       \
     /* RU (Russian) */                                                         \
-    X(Ru10x11, 31, _ru10x11, "ru-10-11")                                       \
+    X(Ru10x11, 32, _ru10x11, "ru-10-11")                                       \
     /* SE (Swedish) */                                                         \
-    X(Se10x11, 32, _se10x11, "se-10-11")                                       \
+    X(Se10x11, 33, _se10x11, "se-10-11")                                       \
     /* TR (Turkish) */                                                         \
-    X(Tr10x11, 33, _tr10x11, "tr-10-11")                                       \
-    X(Ger10x11NeroFrame, 34, _de10x11NeroFrame, "de-10-11-nero-frame")                         
+    X(Tr10x11, 34, _tr10x11, "tr-10-11")
 
 struct MqttData {
     bool state;
