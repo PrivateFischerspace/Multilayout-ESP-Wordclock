@@ -1,7 +1,6 @@
 #pragma once
 #include "Arduino.h"
 #include "NumberFont.h"
-#include "version.gen.h"
 #include <NeoPixelBus.h> // HsbColor
 
 #define PAYLOAD_LENGTH 30
