@@ -3,6 +3,7 @@
 // build's include order.
 #include "WordClockState.h"
 #include "WordClockTypes/ClockType.hpp"
+#include "version.gen.h"
 
 #include "Mqtt.h"
 

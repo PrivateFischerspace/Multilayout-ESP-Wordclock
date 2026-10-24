@@ -27,6 +27,7 @@
 #include "WordClockState.h"
 
 #include "ClockType.gen.h"
+#include "version.gen.h"
 #include "WebPageAdapter.h"
 
 #include "EEPROMAnything.h"

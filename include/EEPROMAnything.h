@@ -1,4 +1,5 @@
 #include "SensitiveData.h"
+#include "version.gen.h"
 #include <Arduino.h>
 #include <EEPROM.h>
 #include <string.h>
