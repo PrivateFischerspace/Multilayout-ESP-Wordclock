@@ -233,9 +233,38 @@ Please note:
 Once the upload to the ESP has succeeded (`SUCCESS` message in the terminal), the clock reboots.
 
 1. The word clock now opens its own WiFi network (access point).
-2. Search for a new WiFi network with your phone or laptop (usually "Wortuhr" or similar) and connect to it.
+2. Search for a new WiFi network with your phone or laptop (default: `Connect_to_Wordclock`) and connect to it.
 3. A login window (captive portal) should open automatically. If it does not, open your browser and go to `http://192.168.4.1`.
 4. Enter your home WiFi credentials there. The clock reboots, connects to your home network and is reachable at its own IP address from then on.
+
+### Setup portal: time, color and front without WiFi
+
+The setup portal (captive portal) can do more than store WiFi credentials, so the clock can be used without a home network at all.
+
+* **Time from your phone:** as soon as any portal page is open, the clock takes over the time of the connected device. If an RTC is fitted, it is set as well.
+* **"Clock" menu entry:** here you can set:
+  * the foreground color
+  * the clock variant, the six layout switches and the build type (as in the **Front** section of the web interface)
+  * the time by hand, in case the automatic takeover does not work
+
+  The settings are stored with **Save settings**. As in the web interface, changes to the matrix size only take effect after a restart.
+* **"Continue without WiFi"** closes the portal. The clock then keeps running with the time it took over.
+
+While the portal is open the display does not update. Color and time appear once the portal has been left.
+
+**Opening the portal:**
+
+* On the first start, or when the stored WiFi cannot be reached, it opens by itself, at the latest after about 20 seconds of trying to connect.
+* With a working WiFi connection: cut the power **three times in a row**, each time before the clock has finished booting (within a few seconds). On the third start the portal opens; the WiFi credentials are kept.
+
+> **Caution:** on the **sixth** start in a row the clock resets all settings to factory defaults (the WiFi credentials are kept). Counting starts over once the clock has booted completely.
+
+### Running without WiFi
+
+* **Without an RTC** the portal stays open until it is left via "Continue without WiFi". The time then comes from your phone. After a power cut it is lost and has to be taken over again through the portal.
+* **With an RTC** the portal closes by itself after 120 seconds without use, and the clock keeps running on the RTC time. So when no WiFi is reachable, booting takes up to about 20 s + 120 s.
+* **RTC module HW-111 (Tiny RTC):** this module uses a DS1307. Set `RTC_Type` to `RTC_DS1307` in `include/Config.h` and build the firmware yourself, because the prebuilt firmware is built for the DS3231. Then enter SDA and SCL in the web interface under **Settings → Hardware pins**. **Scan I2C addresses** should list `0x68` (usually also `0x50` for the EEPROM on the module).
+  * **Disable the charging circuit:** the HW-111 charges the coin cell through a diode and resistors. This is meant for a rechargeable LIR2032. With a regular CR2032 the charging circuit must be removed, otherwise the cell gets charged and may leak or swell. The usual fix is to desolder D1, R4, R5 and R6 and bridge the pads of R6 (see the [Arduino forum](https://forum.arduino.cc/t/tiny-rtc-i2c-module-issue/173162/22)).
 
 ---
 
@@ -439,10 +468,14 @@ Once the clock has processed a command (or something changes internally), it pub
 ---
 
 ### 5. Home Assistant auto-discovery
-This clock supports MQTT auto-discovery for Home Assistant.
-When the clock starts, or when the "MQTT Discovery" button in the web interface is pressed, it automatically publishes its full configuration to the topic:
+This clock supports MQTT auto-discovery for Home Assistant. Systems that emulate the Home Assistant format (e.g. openHAB) find the clock as well.
+When the clock connects to the broker, Home Assistant restarts, or the "MQTT Discovery" button in the web interface is pressed, it publishes a separate retained configuration for every entity to:
 
-`homeassistant/light/<TOPIC>/light/config`
+`homeassistant/<type>/<MAC>/config` for the light, e.g. `homeassistant/light/24A1602FF8C5/config`
+
+`homeassistant/<type>/<MAC>_<ID>/config` for all other entities, e.g. `homeassistant/sensor/24A1602FF8C5_lux/config`
+
+`<MAC>` is the clock's MAC address without colons. All entities are grouped into one device.
 
 As a result the word clock appears in Home Assistant as a light entity, fully automatically. You immediately get access to:
 
