@@ -59,7 +59,8 @@
     /* SE (Swedish) */                                                         \
     X(Se10x11, 32, _se10x11, "se-10-11")                                       \
     /* TR (Turkish) */                                                         \
-    X(Tr10x11, 33, _tr10x11, "tr-10-11")
+    X(Tr10x11, 33, _tr10x11, "tr-10-11")                                       \
+    X(Ger10x11NeroFrame, 34, _de10x11NeroFrame, "de-10-11-nero-frame")                         
 
 struct MqttData {
     bool state;
