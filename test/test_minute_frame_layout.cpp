@@ -255,6 +255,27 @@ void frameStartsBehindTheWordMatrix() {
     }
 }
 
+void neroFrameUsesDoubleWidthMinutes() {
+    ClockType *layout = &_de10x11NeroFrame;
+    setUp(MINUTE_LEDS_WIRED_4, MinuteVariant::LED4x);
+    G.buildTypeDef = BuildTypeDef::DoubleRes;
+
+    uint16_t minutePixels[4] = {0};
+    layout->getMinuteArray(minutePixels, MinuteVariant::LED4x);
+
+    check(layout->rowsWordMatrix() == 10 && layout->colsWordMatrix() == 11,
+          "Nero Frame word matrix is 10x11");
+    check(layout->numPixelsPerMinuteIndicator() == 2,
+          "Nero Frame minute indicators use two LEDs each");
+    check(minutePixels[0] == 220 && minutePixels[1] == 222 &&
+              minutePixels[2] == 224 && minutePixels[3] == 226,
+          "Nero Frame minutes start after 220 word LEDs with two-LED spacing");
+    check(layout->getFrameMatrixIndex(0) == 228,
+          "Nero Frame starts after the eight minute LEDs");
+    check(layout->numPixelsOnStrip() == 348,
+          "Nero Frame strip contains 220 word, 8 minute, and 120 frame LEDs");
+}
+
 } // namespace
 
 int main() {
@@ -265,5 +286,6 @@ int main() {
     offKeepsTheFrameBehindSevenWiredLeds();
     layoutsWithoutLedVariantsHaveNoMinuteLeds();
     frameStartsBehindTheWordMatrix();
+    neroFrameUsesDoubleWidthMinutes();
     return report("minute_frame_layout");
 }

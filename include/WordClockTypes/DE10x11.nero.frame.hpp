@@ -29,17 +29,23 @@ public:
 
     //------------------------------------------------------------------------------
 
-    virtual uint16_t getFrameMatrixIndex(uint16_t index) override {
-        return 114 + index;
-    };
+    virtual uint8_t numPixelsMinuteMatrix() override { return 8; }
+
+    //------------------------------------------------------------------------------
+
+    virtual uint8_t numPixelsPerMinuteIndicator() override { return 2; }
+
+    //------------------------------------------------------------------------------
+
+    virtual bool hasLed7x() override { return false; }
 
     //------------------------------------------------------------------------------
 
     virtual void getMinuteArray(uint16_t *returnArr,
-                                      uint8_t col) {
-        for (uint8_t i = 0; i < 8; i++) {
-            returnArr[i] = 220 + i;
-
+                                MinuteVariant variant) override {
+        const uint16_t firstMinute = numPixelsWordMatrixAdjusted();
+        for (uint8_t i = 0; i < 4; i++) {
+            returnArr[i] = firstMinute + i * 2;
         }
     };
 };

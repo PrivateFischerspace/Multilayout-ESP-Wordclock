@@ -106,6 +106,8 @@ public:
                                                        : MINUTE_LEDS_WIRED_4;
     }
 
+    virtual uint8_t numPixelsPerMinuteIndicator() { return 1; }
+
     virtual uint16_t getFrameMatrixIndex(uint16_t index) {
         return numPixelsWordMatrixAdjusted() + numPixelsMinuteMatrix() + index;
     }
@@ -130,8 +132,10 @@ public:
                 uint16_t minutePixels[MINUTE_LEDS_WIRED_4] = {0};
                 getMinuteArray(minutePixels, variant);
                 for (uint8_t i = 0; i < MINUTE_LEDS_WIRED_4; i++) {
-                    if (minutePixels[i] + 1 > pixelCount) {
-                        pixelCount = minutePixels[i] + 1;
+                    const uint16_t behindMinute =
+                        minutePixels[i] + numPixelsPerMinuteIndicator();
+                    if (behindMinute > pixelCount) {
+                        pixelCount = behindMinute;
                     }
                 }
             }

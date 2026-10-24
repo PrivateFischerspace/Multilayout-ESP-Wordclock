@@ -377,7 +377,10 @@ void Led::setbyMinuteArray(ColorPosition colorPosition) {
     for (uint8_t i = 0; i < 4; i++) {
         /* Bitwise check whether Pixel bit is set */
         if ((minuteArray >> i) & 1U) {
-            setPixel(minutePixelArray[i], displayedColor);
+            for (uint8_t led = 0;
+                 led < usedClockType->numPixelsPerMinuteIndicator(); led++) {
+                setPixel(minutePixelArray[i] + led, displayedColor);
+            }
         }
     }
 }
@@ -580,7 +583,10 @@ void Led::clearRow(uint8_t row) {
 
 void Led::clearMinArray() {
     if (usedClockType->hasMinuteLeds()) {
-        for (uint16_t i = minutePixelArray[0]; i <= minutePixelArray[3]; i++) {
+        const uint16_t lastMinutePixel =
+            minutePixelArray[3] +
+            usedClockType->numPixelsPerMinuteIndicator() - 1;
+        for (uint16_t i = minutePixelArray[0]; i <= lastMinutePixel; i++) {
             clearPixel(i);
         }
     }
