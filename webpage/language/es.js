@@ -113,6 +113,7 @@ let TRANSLATION_ES = {
 			"de-10-11-alt": "🇩🇪 10 × 11 Alternativ",
 			"de-10-11-clock": "🇩🇪 10 × 11 Uhr",
 			"de-10-11-nero": "🇩🇪 10 × 11 Nero",
+			"de-10-11-nero-frame": "🇩🇪 10 × 11 Nero Frame",
 			"de-10-11-mrrioes": "🇩🇪 10 × 11 mrrioes",
 			"de-10-11-bayerisch": "🇩🇪 10 × 11 bávaro",
 			"de-10-11-schwaebisch": "🇩🇪 10 × 11 Estilo suabo",

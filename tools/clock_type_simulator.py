@@ -182,7 +182,8 @@ def normalize_name(value: str) -> str:
 
 def normalize_word(value: str) -> str:
     value = value.strip()
-    value = value.removeprefix("FrontWord::")
+    if value.startswith("FrontWord::"):
+        value = value[len("FrontWord::") :]
     return value.lower()
 
 
